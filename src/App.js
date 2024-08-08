@@ -12,6 +12,36 @@ import { Calendar as SmallCalender } from "react-calendar";
 import moment, { format as formatMoment } from "moment";
 import "./App.css";
 
+/*
+The data Structure to use :
+
+  const calendarData = {
+    // Current date (YYYY-MM-DD format)
+    id: Number,
+    currentDate: Date,
+    // events is an Array of Events
+    events: [
+      {
+        id: Number,
+      }
+    ]
+  }
+
+
+  //Event Structure
+  // the Id of Event will map to the id in CalendarData.events
+  const Event = {
+    id: Number,
+    title: String,
+    start: Date,
+    end: Date
+  }
+
+  In the RIght side. we will call findAll() from Event collection to get all the events.
+  For the life side, we will call findById() from Event collection to get the event by id ( the id in CalendarData.events)
+
+*/
+
 const locales = {
   "en-US": require("date-fns/locale/en-US"),
 };
@@ -121,7 +151,11 @@ function App() {
               listofDates.map((event) => {
                 return (
                   <>
-                    <div className={`w-full border-2 border-black m-1 border-solid p-2 ${event.type == "Event" ? "bg-[#0F4C81] text-white" : ""}` }>
+                    <div
+                      className={`w-full border-2 border-black m-1 border-solid p-2 ${
+                        event.type == "Event" ? "bg-[#0F4C81] text-white" : ""
+                      }`}
+                    >
                       <div className="w-full flex justify-between">
                         <p className="text-xl font-bold">{event.title}</p>
                         <p className="text-xl font-bold">{event.type}</p>
